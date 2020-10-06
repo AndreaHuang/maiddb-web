@@ -3,15 +3,26 @@ import { Modal, Badge } from "react-bootstrap";
 
 import ReactCountryFlag from "react-country-flag";
 
+import Hate from "./hate";
+import Share from "./share";
+
 const CaseDetails = (props) => {
-  const { data, show, handleHide } = props;
+  const { data, handleHide } = props;
   console.log("data", data);
 
   if (data === null) {
     return null;
   }
   return (
-    <Modal dialogClassName="modal-90w" show={true} onHide={handleHide}>
+    <Modal
+      centered={true}
+      dialogClassName="modal-90w"
+      keyboard={true}
+      onHide={handleHide}
+      scrollable={true}
+      show={true}
+      size="lg"
+    >
       <Modal.Header closeButton>
         <Badge variant="danger" className="mr-1">
           {data.maid.name}
@@ -33,11 +44,30 @@ const CaseDetails = (props) => {
         ))}
         <p>{data.details}</p>
       </Modal.Body>
-      <Modal.Footer className="d-flex justify-content-end">
-        <small className="text-muted">
-          {data.author.name ? <a>{data.author.name} </a> : null}
-          {data.postDate ? data.postDate : null}
-        </small>
+      <Modal.Footer>
+        <div className="d-flex justify-content-start">
+          <Share
+            onClick={() => {
+              console.log("To Share this post");
+            }}
+          />
+        </div>
+        <div className="d-flex justify-content-start">
+          <Hate
+            hated={true}
+            count={100}
+            onToggle={() => {
+              console.log("Hate icon is clicked");
+            }}
+          />
+        </div>
+        <div className="d-flex justify-content-end">
+          {" "}
+          <small className="text-muted">
+            {data.author.name ? data.author.name : null}
+            {data.postDate ? data.postDate : null}
+          </small>
+        </div>
       </Modal.Footer>
     </Modal>
   );

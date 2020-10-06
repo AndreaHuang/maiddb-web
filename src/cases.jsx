@@ -14,7 +14,9 @@ class Cases extends Component {
           monthOfBirth: 12,
         },
         categories: ["Bad to kids"],
-        details: "a long description that is at least 30 characters",
+        details: new Array(100).join(
+          "a long description that is at least 30 characters"
+        ),
         reference: {
           source: "Facebook",
           link: "https://alink",
@@ -24,6 +26,7 @@ class Cases extends Component {
           _id: "aiddafebfe",
           name: "Admin",
         },
+        hateCount: 100,
       },
       {
         maid: {
@@ -68,7 +71,6 @@ class Cases extends Component {
         </CardDeck>
         <CaseDetails
           data={this.state.caseDetails}
-          show={this.state.caseDetails !== null}
           handleHide={() =>
             this.setState({
               caseDetails: null,

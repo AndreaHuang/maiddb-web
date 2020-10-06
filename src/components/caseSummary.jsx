@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Button, Badge } from "react-bootstrap";
 
 import ReactCountryFlag from "react-country-flag";
+import _ from "lodash";
 
 const CaseSummary = (props) => {
   const { data, showDetails } = props;

@@ -15,3 +15,6 @@ code {
 .card {
   background-color: #00a82d;
 }
+.badge {
+  border-color: red;
+}
