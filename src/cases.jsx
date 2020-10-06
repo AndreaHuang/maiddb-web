@@ -10,7 +10,7 @@ class Cases extends Component {
         maid: {
           name: "Maid A",
           nationality: "PH",
-          yearOfBirth: 2002,
+          yearOfBirth: 1992,
           monthOfBirth: 12,
         },
         categories: ["Bad to kids"],
@@ -27,6 +27,17 @@ class Cases extends Component {
           name: "Admin",
         },
         hateCount: 100,
+        images: [
+          {
+            thumbnailUrl: "https://picsum.photos/100/150",
+            url:
+              "https://scontent.fhkg4-1.fna.fbcdn.net/v/t1.0-9/120665225_10225450292590690_6873945068203021735_o.jpg?_nc_cat=110&_nc_sid=b9115d&_nc_ohc=qtSznGtDA6cAX-UgVIa&_nc_oc=AQkrt8PgLVVg9mI2Yo3L1att5HMRKFLPhHkMuDdPoJX8qy42lNwK8-qHVv9JjflT0Io&_nc_ht=scontent.fhkg4-1.fna&oh=e9bc063379f6347007a1afad6931aed7&oe=5FA3E705",
+          },
+          {
+            thumbnailUrl: "https://picsum.photos/100/150",
+            url: "https://picsum.photos/800/1200",
+          },
+        ],
       },
       {
         maid: {
@@ -61,6 +72,7 @@ class Cases extends Component {
             <CaseSummary
               key={idx}
               data={item}
+              isDetailsMode={false}
               showDetails={() =>
                 this.setState({
                   caseDetails: item,
