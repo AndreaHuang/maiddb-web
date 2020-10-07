@@ -12,15 +12,9 @@ import TextContent from "./textContent";
 import ImageGrid from "./imageGrid";
 
 const CaseSummary = (props) => {
-  const { data, showDetails, isDetailsMode } = props;
-  let widthStyle = { width: "100%" };
-  let cardClassName = "bg-white mx-20 shadow-sm rounded";
-  if (!isDetailsMode) {
-    cardClassName += cardClassName + " h-100";
-    widthStyle = { width: "18rem" };
-  } else {
-    cardClassName += cardClassName + "d-flex";
-  }
+  const { data } = props;
+  let widthStyle = { width: "18rem" };
+  let cardClassName = "bg-white mx-20  h-100 shadow-sm rounded";
 
   return (
     <>

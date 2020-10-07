@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { Modal } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -25,9 +26,15 @@ const responsive = {
 
 const ImageGrid = (props) => {
   const [selectedImageUrl, setSelectedImageUrl] = useState(null);
-  const { images, path, size = 100 } = props;
+  const { images, size = 100 } = props;
   const THUMBNAILURL = "thumbnailUrl";
   const URL = "url";
+  const dismissModalDialog = () => {
+    setSelectedImageUrl(null);
+  };
+  const selectImage = (image) => {
+    setSelectedImageUrl(image[URL]);
+  };
   if (!images) {
     return null;
   }
@@ -40,25 +47,31 @@ const ImageGrid = (props) => {
         autoPlaySpeed={3000}
         keyBoardControl={true}
       >
-        {images.map((img, idx) => (
-          <div key={idx}>
+        {images.map((image, idx) => (
+          <div key={idx} onClick={() => selectImage(image)}>
             <img
+              alt="A Case"
               className="d-block w-45"
-              alt="image"
-              src={img[THUMBNAILURL]}
+              src={image[THUMBNAILURL]}
               style={{ width: size, height: size * 1.5 }}
             />
           </div>
         ))}
       </Carousel>
 
-      {/* <Modal className="w-90" show={selectedImageUrl !== null}>
-        <img
-          alt="image"
-          src={img[URL]}
-          style={{ width: size, height: size * 1.5 }}
-        />
-      </Modal> */}
+      <Modal
+        className="w-90"
+        show={selectedImageUrl !== null}
+        onHide={dismissModalDialog}
+      >
+        <div onClick={dismissModalDialog}>
+          <img
+            alt="A Case"
+            src={selectedImageUrl}
+            style={{ width: size * 3, height: size * 6 }}
+          />
+        </div>
+      </Modal>
     </>
   );
 };

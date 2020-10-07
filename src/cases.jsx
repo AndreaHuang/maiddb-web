@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Container, CardDeck } from "react-bootstrap";
 import CaseSummary from "./components/caseSummary";
-import CaseDetails from "./components/caseDetails";
 class Cases extends Component {
   state = {
-    caseDetails: null,
     cases: [
       {
         maid: {
@@ -69,34 +67,14 @@ class Cases extends Component {
       },
     ],
   };
-  componentDidUpdate() {
-    console.log(this.state.caseDetails);
-  }
   render() {
     return (
       <Container>
         <CardDeck>
           {this.state.cases.map((item, idx) => (
-            <CaseSummary
-              key={idx}
-              data={item}
-              isDetailsMode={false}
-              showDetails={() =>
-                this.setState({
-                  caseDetails: item,
-                })
-              }
-            />
+            <CaseSummary key={idx} data={item} />
           ))}
         </CardDeck>
-        <CaseDetails
-          data={this.state.caseDetails}
-          handleHide={() =>
-            this.setState({
-              caseDetails: null,
-            })
-          }
-        />
       </Container>
     );
   }

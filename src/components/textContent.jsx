@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component } from "react";
 import _ from "lodash";
 
 const viewMoreText = "View More";
@@ -29,8 +29,6 @@ class TextContent extends Component {
         length: length,
       });
     }
-    console.log(length);
-    console.log(this.state);
   }
 
   toggle = () => {

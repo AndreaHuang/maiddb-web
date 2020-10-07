@@ -11,7 +11,6 @@ const Age = (props) => {
     return age_now;
   };
 
-  console.log(birthYear, birthMonth);
   return (
     <div>
       <span>Age: </span>
