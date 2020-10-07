@@ -8,7 +8,8 @@ import Hate from "./hate";
 import Share from "./share";
 import ExternalSource from "./externalSource";
 import Age from "./age";
-import CaseBody from "./caseBody";
+import TextContent from "./textContent";
+import ImageGrid from "./imageGrid";
 
 const CaseSummary = (props) => {
   const { data, showDetails, isDetailsMode } = props;
@@ -49,12 +50,8 @@ const CaseSummary = (props) => {
               </Badge>
             ))}
           </Card.Title>
-          <CaseBody
-            isDetailsMode={isDetailsMode}
-            details={data.details}
-            images={data.images}
-            showDetails={showDetails}
-          />
+          <TextContent content={data.details} />
+          <ImageGrid images={data.images} />
         </Card.Body>
         <Card.Footer className="d-flex justify-content-end">
           <div className="d-flex justify-content-start">
