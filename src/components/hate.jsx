@@ -1,24 +1,24 @@
 import React from "react";
 
-import { RiKnifeLine, RiKnifeFill } from "react-icons/ri";
+// import { RiKnifeLine, RiKnifeFill } from "react-icons/ri";
 
-import { IconContext } from "react-icons";
+// import { IconContext } from "react-icons";
 
 import { Badge } from "react-bootstrap";
 
 const Hate = (props) => {
-  const { hated, count, onToggle } = props;
+  const { count, onToggle } = props;
 
   return (
     <Badge onClick={onToggle}>
-      <span>
-        <IconContext.Provider
+      {/* <IconContext.Provider
           value={{ style: { color: "red", verticalAlign: "middle" } }}
         >
           {hated ? <RiKnifeFill /> : <RiKnifeLine />}
-        </IconContext.Provider>
-        {count}
-      </span>
+          </IconContext.Provider> */}
+      <i className="far fa-angry" />
+
+      {count}
     </Badge>
   );
 };

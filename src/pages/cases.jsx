@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, CardDeck } from "react-bootstrap";
-import CaseSummary from "./components/caseSummary";
+import CaseSummary from "../components/caseSummary";
 class Cases extends Component {
   state = {
     cases: [
