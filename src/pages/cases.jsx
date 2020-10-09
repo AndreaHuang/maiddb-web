@@ -1,72 +1,42 @@
 import React, { Component } from "react";
 import { Container, CardDeck } from "react-bootstrap";
+import { toast } from "react-toastify";
+
 import CaseSummary from "../components/caseSummary";
+import caseService from "../services/caseService";
 class Cases extends Component {
   state = {
-    cases: [
-      {
-        maid: {
-          name: "Maid A",
-          nationality: "PH",
-          yearOfBirth: 1992,
-          monthOfBirth: 12,
-        },
-        categories: ["Bad to kids"],
-        details: new Array(100).join(
-          "a long description that is at least 30 characters"
-        ),
-        reference: {
-          source: "Facebook",
-          link: "https://alink",
-          postDate: "2019-09",
-        },
-        author: {
-          _id: "aiddafebfe",
-          name: "Admin",
-        },
-        hateCount: 100,
-        images: [
-          {
-            thumbnailUrl: "https://picsum.photos/200/150",
-            url:
-              "https://scontent.fhkg4-1.fna.fbcdn.net/v/t1.0-9/120665225_10225450292590690_6873945068203021735_o.jpg?_nc_cat=110&_nc_sid=b9115d&_nc_ohc=qtSznGtDA6cAX-UgVIa&_nc_oc=AQkrt8PgLVVg9mI2Yo3L1att5HMRKFLPhHkMuDdPoJX8qy42lNwK8-qHVv9JjflT0Io&_nc_ht=scontent.fhkg4-1.fna&oh=e9bc063379f6347007a1afad6931aed7&oe=5FA3E705",
-          },
-          {
-            thumbnailUrl: "https://picsum.photos/100/150",
-            url: "https://picsum.photos/800/1200",
-          },
-          {
-            thumbnailUrl: "https://picsum.photos/100/150",
-            url: "https://picsum.photos/800/1200",
-          },
-          {
-            thumbnailUrl: "https://picsum.photos/100/150",
-            url: "https://picsum.photos/800/1200",
-          },
-        ],
-      },
-      {
-        maid: {
-          name: "Maid B",
-          nationality: "ID",
-          yearOfBirth: 2002,
-          monthOfBirth: 12,
-        },
-        categories: ["Bad to eldly"],
-        details: "a long description that is at least 30 characters",
-        reference: {
-          source: "Facebook",
-          link: "https://alink",
-          postDate: "2019-09",
-        },
-        author: {
-          _id: "aiddafebfe",
-          _name: "Admin",
-        },
-        postDate: "2019-09-09",
-      },
-    ],
+    cases: [],
   };
+
+  async populateCases() {
+    try {
+      //success response will be like {data:[],meta:{}}
+
+      const response = await caseService.getCases();
+      if (response.data.data) {
+        this.setState({ cases: response.data.data });
+      } else {
+        toast.warn("Found 0 case.");
+      }
+    } catch (ex) {
+      //get 4xx error
+      if (
+        ex.response &&
+        ex.response.status >= 400 &&
+        ex.response.status < 500
+      ) {
+        const errorDetails = ex.response.data;
+        toast.error(
+          ex.message + (errorDetails ? ", details: " + errorDetails : "")
+        );
+      }
+    }
+  }
+
+  async componentDidMount() {
+    await this.populateCases();
+  }
   render() {
     return (
       <Container>
