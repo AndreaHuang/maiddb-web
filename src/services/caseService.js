@@ -7,15 +7,15 @@ async function getCases() {
   return await http.get(apiEndpoint);
 }
 
-// createNewCase = async (newCase) => {
-//   return await http.post(apiEndpoint, newCase);
-// };
+async function createNewCase(newCase) {
+  return await http.post(apiEndpoint, newCase);
+}
 // deleteCase = async (caseId) => {
 //   return await http.delete(apiEndpoint + "/" + caseId);
 // };
 
 export default {
   getCases,
-  // createNewCase,
+  createNewCase,
   // deleteCase,
 };

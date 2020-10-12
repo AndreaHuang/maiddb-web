@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const NavBar = () => {
+const NavBar = ({ user }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">
@@ -46,16 +46,34 @@ const NavBar = () => {
           </button>
         </form>
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link className="nav-link" to="/login">
-              Login
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/register">
-              Sign up
-            </Link>
-          </li>
+          {!user && (
+            <li className="nav-item">
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
+            </li>
+          )}
+          {!user && (
+            <li className="nav-item">
+              <Link className="nav-link" to="/register">
+                Sign up
+              </Link>
+            </li>
+          )}
+          {user && (
+            <li className="nav-item">
+              <Link className="nav-link" to="/profile">
+                Profile
+              </Link>
+            </li>
+          )}
+          {user && (
+            <li className="nav-item">
+              <Link className="nav-link" to="/logout">
+                Logout
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </nav>

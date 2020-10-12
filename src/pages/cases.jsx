@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, CardDeck } from "react-bootstrap";
+import { CardDeck } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 import CaseSummary from "../components/caseSummary";
@@ -31,6 +31,7 @@ class Cases extends Component {
           ex.message + (errorDetails ? ", details: " + errorDetails : "")
         );
       }
+      toast.error(ex.message);
     }
   }
 
@@ -39,13 +40,13 @@ class Cases extends Component {
   }
   render() {
     return (
-      <Container>
+      <div className="container">
         <CardDeck>
           {this.state.cases.map((item, idx) => (
             <CaseSummary key={idx} data={item} />
           ))}
         </CardDeck>
-      </Container>
+      </div>
     );
   }
 }

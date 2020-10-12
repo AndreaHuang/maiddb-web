@@ -13,6 +13,7 @@ const RadioInput = ({ name, label, value, error, options, onChange }) => {
                 name={name}
                 id={option.value}
                 onChange={onChange}
+                value={option.value}
               />
               <label className="form-check-label" htmlFor={option.value}>
                 {option.label}

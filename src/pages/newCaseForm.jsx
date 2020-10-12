@@ -1,7 +1,10 @@
 import React from "react";
 import Joi from "joi-browser";
+import { toast } from "react-toastify";
 
 import AppForm from "../components/common/appForm";
+import caseService from "../services/caseService";
+import constants from "../config/constants";
 
 const nationalityOptions = [
   {
@@ -21,6 +24,9 @@ class NewCaseForm extends AppForm {
       // maidYearOfBirth: "",
       // maidMonthOfBirth: "",
       details: "",
+      externalSource: "",
+      externalLink: "",
+      originalPostDate: "",
     },
     errors: {},
     buttonClickable: true,
@@ -38,15 +44,62 @@ class NewCaseForm extends AppForm {
 
     // categories: Joi.array().required().min(1).max(50),
     details: Joi.string().required().min(5).max(5000).label("Details"),
-    // reference: Joi.object({
-    //   source: Joi.string().required().min(3).max(100),
-    //   link: Joi.string(),
-    //   postDate: Joi.string().isoDate(),
+
+    externalSource: Joi.string().required().min(3).max(100),
+    externalLink: Joi.string(),
+    originalPostDate: Joi.string().isoDate(),
     // }),
   };
 
-  doSubmit = () => {
-    console.log("action after validation passed");
+  buildRequestBody = () => {
+    const { data } = this.state;
+    const requestBody = {
+      maid: {
+        name: data.maidName,
+        nationality: data.maidNationality,
+      },
+      details: data.details,
+    };
+    const reference = {};
+    if (data.externalSource) {
+      reference.source = data.externalSource;
+    }
+    if (data.externalSource) {
+      reference.link = data.externalLink;
+    }
+    if (data.externalSource) {
+      reference.postDate = data.originalPostDate;
+    }
+    if (Object.keys(reference).length > 0) {
+      requestBody.reference = reference;
+    }
+    return requestBody;
+  };
+  doSubmit = async () => {
+    try {
+      await caseService.createNewCase(this.buildRequestBody());
+
+      toast.info(
+        "You case has been submmited successfully. We will review it and pulish it asap. Thank you."
+      );
+      this.props.history.push(constants.PATH_CASES);
+    } catch (ex) {
+      if (ex.response) {
+        if (ex.response.status === 401) {
+          toast.error("Error Code " + ex.response.data.errorCode);
+
+          this.props.history.push(constants.PATH_LOGIN);
+        } else if (ex.response.status === 400) {
+          toast.error(
+            ex.response.data.errorCode + " " + ex.response.data.message
+          );
+        } else {
+          toast.error(ex.message);
+        }
+      } else {
+        toast.error(ex.message);
+      }
+    }
   };
   render() {
     return (
@@ -59,6 +112,10 @@ class NewCaseForm extends AppForm {
             nationalityOptions
           )}
           {this.renderTextArea("details", "Details")}
+
+          {this.renderInput("externalSource", "External Source")}
+          {this.renderInput("externalLink", "External Link")}
+          {this.renderInput("originalPostDate", "Original Post Date")}
           {this.renderButton("Submit")}
         </form>
       </div>

@@ -48,12 +48,14 @@ const CaseSummary = (props) => {
           <ImageGrid images={data.images} />
         </Card.Body>
         <Card.Footer className="d-flex justify-content-end">
-          <div className="d-flex justify-content-start">
-            <ExternalSource
-              name={data.reference.source}
-              link={data.reference.link}
-            />
-          </div>
+          {data.reference && (
+            <div className="d-flex justify-content-start">
+              <ExternalSource
+                name={data.reference.source}
+                link={data.reference.link}
+              />
+            </div>
+          )}
           <div className="d-flex justify-content-start">
             <Share
               onClick={() => {
