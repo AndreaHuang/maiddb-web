@@ -47,7 +47,7 @@ class TextContent extends Component {
 
     if (isDetailsMode) {
       return (
-        <p>
+        <p className={this.props.className}>
           {fullText} ...
           <span onClick={this.toggle}>
             <small>{viewLessText}</small>

@@ -2,9 +2,10 @@ import React from "react";
 import Joi from "joi-browser";
 import { toast } from "react-toastify";
 
-import AppForm from "../components/common/appForm";
+import AppForm from "../components/appForm";
 import caseService from "../services/caseService";
 import constants from "../config/constants";
+import FileUpload from "../components/fileUpload";
 
 const nationalityOptions = [
   {
@@ -24,9 +25,10 @@ class NewCaseForm extends AppForm {
       // maidYearOfBirth: "",
       // maidMonthOfBirth: "",
       details: "",
-      externalSource: "",
-      externalLink: "",
-      originalPostDate: "",
+      // externalSource: "",
+      // externalLink: "",
+      // originalPostDate: "",
+      files: [],
     },
     errors: {},
     buttonClickable: true,
@@ -45,14 +47,38 @@ class NewCaseForm extends AppForm {
     // categories: Joi.array().required().min(1).max(50),
     details: Joi.string().required().min(5).max(5000).label("Details"),
 
-    externalSource: Joi.string().required().min(3).max(100),
-    externalLink: Joi.string(),
-    originalPostDate: Joi.string().isoDate(),
+    // externalSource: Joi.string().required().min(3).max(100),
+    // externalLink: Joi.string(),
+    // originalPostDate: Joi.string().isoDate(),
+    files: Joi.array(),
+
     // }),
   };
 
+  onFilesUpdate = (files) => {
+    const { data } = this.state;
+    data.files = files;
+    this.setState({ data });
+  };
+  buildFileArrayForUpload = (files) => {
+    //const result = files.map((fileItem) => fileItem.file);
+    const result = files.map((fileItem) => {
+      const resultItem = {
+        name: fileItem.file.name,
+        type: fileItem.file.type,
+        size: fileItem.file.size,
+        lastModified: fileItem.file.lastModified,
+        data: fileItem.getFileEncodeBase64String(),
+      };
+      return resultItem;
+    });
+    console.log("buildFileArrayForUpload", result);
+    return result;
+  };
   buildRequestBody = () => {
     const { data } = this.state;
+    console.log("buildRequestBody() called", data);
+
     const requestBody = {
       maid: {
         name: data.maidName,
@@ -60,14 +86,18 @@ class NewCaseForm extends AppForm {
       },
       details: data.details,
     };
+    const files = this.buildFileArrayForUpload(data.files);
+    if (files) {
+      requestBody.files = files;
+    }
     const reference = {};
     if (data.externalSource) {
       reference.source = data.externalSource;
     }
-    if (data.externalSource) {
+    if (data.externalLink) {
       reference.link = data.externalLink;
     }
-    if (data.externalSource) {
+    if (data.originalPostDate) {
       reference.postDate = data.originalPostDate;
     }
     if (Object.keys(reference).length > 0) {
@@ -105,6 +135,7 @@ class NewCaseForm extends AppForm {
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit}>
+          <FileUpload files={this.state.files} setFiles={this.onFilesUpdate} />
           {this.renderInput("maidName", "Maid Name")}
           {this.renderRadioSelect(
             "maidNationality",
@@ -113,9 +144,9 @@ class NewCaseForm extends AppForm {
           )}
           {this.renderTextArea("details", "Details")}
 
-          {this.renderInput("externalSource", "External Source")}
+          {/* {this.renderInput("externalSource", "External Source")}
           {this.renderInput("externalLink", "External Link")}
-          {this.renderInput("originalPostDate", "Original Post Date")}
+          {this.renderInput("originalPostDate", "Original Post Date")} */}
           {this.renderButton("Submit")}
         </form>
       </div>

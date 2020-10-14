@@ -2,7 +2,7 @@ import React from "react";
 import Joi from "joi-browser";
 import { toast } from "react-toastify";
 
-import AppForm from "../components/common/appForm";
+import AppForm from "../components/appForm";
 import loginService from "../services/loginService";
 import tokenService from "../services/tokenService";
 import Constants from "../config/constants";

@@ -16,8 +16,9 @@ class AppForm extends Component {
   };
 
   validate = () => {
-    console.log("validate() called");
     const { data } = this.state;
+    console.log("validate() called", data);
+
     const { error } = Joi.validate(data, this.schema, joiValidationOption);
 
     let validationError = {};

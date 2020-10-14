@@ -45,7 +45,7 @@ const NavBar = ({ user }) => {
             Search
           </button>
         </form>
-        <ul className="navbar-nav mr-auto">
+        <ul className="navbar-nav">
           {!user && (
             <li className="nav-item">
               <Link className="nav-link" to="/login">

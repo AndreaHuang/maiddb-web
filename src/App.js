@@ -14,8 +14,8 @@ import Logout from "./pages/logout";
 import Profile from "./pages/profile";
 
 import tokenService from "./services/tokenService";
-import ProtectedRoute from "./components/common/protectedRoute";
-import OpenRoute from "./components/common/openRoute";
+import ProtectedRoute from "./components/protectedRoute";
+import OpenRoute from "./components/openRoute";
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
@@ -25,7 +25,7 @@ function App() {
     <div className="App">
       <ToastContainer />
       <NavBar user={currentUser} />
-      <div className="Container">
+      <div className="container-fluid">
         <Switch>
           <Route path="/cases" component={Cases} />
           <ProtectedRoute path="/newCase" component={NewCaseForm} />

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { CardDeck } from "react-bootstrap";
 import { toast } from "react-toastify";
 
-import CaseSummary from "../components/caseSummary";
+import CaseCard from "../components/caseCard";
 import caseService from "../services/caseService";
 class Cases extends Component {
   state = {
@@ -41,11 +40,11 @@ class Cases extends Component {
   render() {
     return (
       <div className="container">
-        <CardDeck>
+        <div className="card-columns">
           {this.state.cases.map((item, idx) => (
-            <CaseSummary key={idx} data={item} />
+            <CaseCard key={idx} data={item} />
           ))}
-        </CardDeck>
+        </div>
       </div>
     );
   }
