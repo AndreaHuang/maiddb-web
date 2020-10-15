@@ -8,6 +8,8 @@ import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
 import config from "../config/config.json";
+import constants from "../config/constants";
+import tokenService from "../services/tokenService";
 
 registerPlugin(
   FilePondPluginImageResize,
@@ -16,13 +18,25 @@ registerPlugin(
   FilePondPluginImageTransform
 );
 
+const getServerConfig = () => {
+  let result = {};
+  result.url = config.fileUrl;
+  const token = tokenService.getToken();
+  let headers = {};
+  if (token) {
+    headers[constants.TOKEN_HEADER_NAME] = token;
+  }
+  result.headers = headers;
+  return result;
+};
+
 const FileUpload = ({ files, setFiles }) => {
   return (
     <FilePond
       file={files}
       onupdatefiles={setFiles}
       name="files"
-      server={config.fileUrl}
+      server={getServerConfig()}
       labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
       allowMultiple={true}
       //   stylePanelAspectRatio={1.5}
