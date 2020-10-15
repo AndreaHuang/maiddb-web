@@ -3,16 +3,16 @@ import { FilePond, registerPlugin } from "react-filepond";
 import FilePondPluginImageResize from "filepond-plugin-image-resize";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
-import FilePondPluginFileEncode from "filepond-plugin-file-encode";
 import FilePondPluginImageTransform from "filepond-plugin-image-transform";
 import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+
+import config from "../config/config.json";
 
 registerPlugin(
   FilePondPluginImageResize,
   FilePondPluginImagePreview,
   FilePondPluginImageExifOrientation,
-  FilePondPluginFileEncode,
   FilePondPluginImageTransform
 );
 
@@ -22,8 +22,8 @@ const FileUpload = ({ files, setFiles }) => {
       file={files}
       onupdatefiles={setFiles}
       name="files"
+      server={config.fileUrl}
       labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
-      instantUpload={false}
       allowMultiple={true}
       //   stylePanelAspectRatio={1.5}
       imageResizeMode="contain"

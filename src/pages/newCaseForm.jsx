@@ -58,27 +58,26 @@ class NewCaseForm extends AppForm {
   onFilesUpdate = (files) => {
     const { data } = this.state;
     data.files = files;
+
     this.setState({ data });
   };
   buildFileArrayForUpload = (files) => {
-    //const result = files.map((fileItem) => fileItem.file);
     const result = files.map((fileItem) => {
+      console.log(fileItem);
       const resultItem = {
-        name: fileItem.file.name,
-        type: fileItem.file.type,
-        size: fileItem.file.size,
+        name: fileItem.filename,
+        type: fileItem.fileType,
+        size: fileItem.fileSize,
         lastModified: fileItem.file.lastModified,
-        data: fileItem.getFileEncodeBase64String(),
+        id: fileItem.serverId,
       };
       return resultItem;
     });
-    console.log("buildFileArrayForUpload", result);
     return result;
   };
+
   buildRequestBody = () => {
     const { data } = this.state;
-    console.log("buildRequestBody() called", data);
-
     const requestBody = {
       maid: {
         name: data.maidName,
