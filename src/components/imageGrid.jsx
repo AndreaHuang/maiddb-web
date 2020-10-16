@@ -61,16 +61,17 @@ const ImageGrid = (props) => {
           </div>
         ))}
       </Carousel>
-
-      <AppModal id="imageModal">
-        <div data-dismiss="modal">
-          <img
-            alt="A Case"
-            src={IMAGEURL + selectedImageUrl}
-            style={{ width: size * 3, height: size * 6 }}
-          />
-        </div>
-      </AppModal>
+      {selectedImageUrl && (
+        <AppModal id="imageModal">
+          <div data-dismiss="modal">
+            <img
+              alt="A Case"
+              src={IMAGEURL + selectedImageUrl}
+              style={{ width: size * 3, height: size * 6 }}
+            />
+          </div>
+        </AppModal>
+      )}
     </>
   );
 };

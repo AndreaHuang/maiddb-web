@@ -3,8 +3,12 @@ import config from "../config/config.json";
 
 const apiEndpoint = config.apiUrl + "/cases";
 
-async function getCases() {
-  return await http.get(apiEndpoint);
+async function getCases(searchKeyword) {
+  if (searchKeyword) {
+    return await http.get(apiEndpoint, { params: { search: searchKeyword } });
+  } else {
+    return await http.get(apiEndpoint);
+  }
 }
 
 async function createNewCase(newCase) {

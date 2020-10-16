@@ -2,17 +2,21 @@ import React, { Component } from "react";
 import { toast } from "react-toastify";
 
 import CaseCard from "../components/caseCard";
+import SearchBox from "../components/searchBox";
 import caseService from "../services/caseService";
+import queryString from "query-string";
+
 class Cases extends Component {
   state = {
     cases: [],
+    searchKeyword: "",
   };
 
   async populateCases() {
     try {
       //success response will be like {data:[],meta:{}}
-
-      const response = await caseService.getCases();
+      const parsed = queryString.parse(this.props.location.search);
+      const response = await caseService.getCases(parsed.search);
       if (response.data.data) {
         this.setState({ cases: response.data.data });
       } else {
@@ -37,9 +41,11 @@ class Cases extends Component {
   async componentDidMount() {
     await this.populateCases();
   }
+
   render() {
     return (
       <div className="container">
+        <SearchBox name="search" />
         <div className="card-columns">
           {this.state.cases.map((item, idx) => (
             <CaseCard key={idx} data={item} />
