@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-const SearchBox = ({ name = "search", handleSearch }) => {
-  const [keyword, setKeyword] = useState("");
+const SearchBox = ({ name = "search", value, handleSearch }) => {
+  const [keyword, setKeyword] = useState(value);
   return (
     <form className="form-inline my-2 my-lg-0">
       <input

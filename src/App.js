@@ -27,7 +27,7 @@ function App() {
       <NavBar user={currentUser} />
       <div className="container-fluid">
         <Switch>
-          <Route path="/cases" component={Cases} />
+          <Route path="/cases" render={(props) => <Cases {...props} />} />
           <ProtectedRoute path="/newCase" component={NewCaseForm} />
           <OpenRoute path="/login" component={LoginForm} />
           <OpenRoute path="/register" component={RegisterForm} />

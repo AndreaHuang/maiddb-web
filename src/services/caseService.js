@@ -3,6 +3,9 @@ import config from "../config/config.json";
 
 const apiEndpoint = config.apiUrl + "/cases";
 
+function getEndpoint(){
+  return apiEndpoint;
+}
 async function getCases(searchKeyword) {
   if (searchKeyword) {
     return await http.get(apiEndpoint, { params: { search: searchKeyword } });
@@ -21,5 +24,6 @@ async function createNewCase(newCase) {
 export default {
   getCases,
   createNewCase,
+  getEndpoint
   // deleteCase,
 };

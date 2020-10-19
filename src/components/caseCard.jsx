@@ -8,8 +8,7 @@ import TextContent from "./textContent";
 import ImageGrid from "./imageGrid";
 import CountryFlag from "./countryFlag";
 
-const CaseCard = (props) => {
-  const { data } = props;
+const CaseCard = ({ data }) => {
   return (
     <div className="card bg-white mx-10 h-100 shadow-sm rounded">
       <header className="d-flex m-2 justity-content-left">
