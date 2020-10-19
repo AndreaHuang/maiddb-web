@@ -1,5 +1,4 @@
-import React, { Component, useState ,useRef,useCallback} from "react";
-import { toast } from "react-toastify";
+import React, {useState ,useRef,useCallback} from "react";
 import queryString from "query-string";
 
 import CaseCard from "../components/caseCard";
@@ -17,7 +16,7 @@ const queryObj=queryString.parse(props.location.search);
   );
   const [page, setPage] = useState(1);
   const [ loading, error, items, hasMore ]= useInfiniteScroll(
-    caseService.getEndpoint(),
+    caseService.getCases,
     query,
     page
   );
@@ -34,45 +33,6 @@ const lastCase = useCallback((node)=>{
   if(node) lastCaseRef.current.observe(node);
 },[loading,hasMore]);
 
-  // state = {
-  //   cases: [],
-  //   query: queryString.parse(this.props.location.search).search,
-  //   page: 1,
-  // };
-  // console.log(props);
- 
-
-  // async populateCases() {
-  //   try {
-  //     //success response will be like {data:[],meta:{}}
-  //     // const parsed = queryString.parse(this.props.location.search);
-  //     const response = await caseService.getCases(this.state.query);
-  //     if (response.data.data) {
-  //       this.setState({ cases: response.data.data });
-  //     } else {
-  //       toast.warn("Found 0 case.");
-  //     }
-  //   } catch (ex) {
-  //     //get 4xx error
-  //     if (
-  //       ex.response &&
-  //       ex.response.status >= 400 &&
-  //       ex.response.status < 500
-  //     ) {
-  //       const errorDetails = ex.response.data;
-  //       toast.error(
-  //         ex.message + (errorDetails ? ", details: " + errorDetails : "")
-  //       );
-  //     }
-  //     toast.error(ex.message);
-  //   }
-  // }
-
-  // async componentDidMount() {
-  //   await this.populateCases();
-  // }
-
-  // render() {
   return (
     <div className="container">
       <SearchBox name="search" value={query} />

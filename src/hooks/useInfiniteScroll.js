@@ -1,43 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState ,useCallback} from "react";
 import axios from "axios";
-import config from "../config/config.json"
-
-export function useInfiniteScroll(url,query, page) {
+export function useInfiniteScroll(loader,query, page) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [items, setItems] = useState([]);
   const [hasMore, setHasMore] = useState(false);
 
+  const loaderCallback = useCallback(loader);
   useEffect(()=>{setItems([])},[query]); //Clear Data is query has changed
 
-  useEffect(() => {
-    setLoading(true);
-    setError(false);
-    let cancel;
+  useEffect(()=>{
+    async function loadData(){
+      setLoading(true);
+      setError(false);
+      let cancel;
+      try{
+        const res = await loaderCallback(query,page,cancel);
   
-    axios({
-      method: "GET",
-      url: url,
-      params: { search: query, page: page, limit: config.recordPerPage },
-      cancelToken: new axios.CancelToken((c) => (cancel = c)),
-    })
-      .then((res) => {
         const {data,meta} = res.data;
-       
+         
         setItems((prevData) => {
            return [...prevData, ...data]}
            );
         setHasMore(meta.nextPage && meta.nextPage > 1);
         setLoading(false);
-      })
-
-      .catch((ex) => {
-        if (axios.isCancel(ex)) return; //ignore cancel
-        console.error(ex);
-        setLoading(false);
-        setError(true);
-      });
-    return () => cancel();
-  }, [query, page]);
+       } catch(ex) {
+         setLoading(false);
+          if (!axios.isCancel(ex)) {
+          console.error(ex);
+          setError(true);
+       }}
+  
+     return () => cancel(); //this is the cleanup function
+    }
+    
+    loadData()}, [query, page,loaderCallback]);
   return [ loading, error, items, hasMore ];
 }

@@ -1,17 +1,21 @@
+import axios from "axios";
+
 import http from "./httpService";
 import config from "../config/config.json";
 
 const apiEndpoint = config.apiUrl + "/cases";
 
-function getEndpoint(){
-  return apiEndpoint;
-}
-async function getCases(searchKeyword) {
-  if (searchKeyword) {
-    return await http.get(apiEndpoint, { params: { search: searchKeyword } });
-  } else {
-    return await http.get(apiEndpoint);
+
+async function getCases(query, page, cancel){
+  const params={};
+  if(query){
+    params.search=query;
   }
+  if(page){
+    params.page=page;
+    params.limit = config.recordPerPage;
+  }
+  return await http.get(apiEndpoint,{params, cancelToken: new axios.CancelToken((c) => (cancel = c))});
 }
 
 async function createNewCase(newCase) {
@@ -24,6 +28,5 @@ async function createNewCase(newCase) {
 export default {
   getCases,
   createNewCase,
-  getEndpoint
   // deleteCase,
 };
