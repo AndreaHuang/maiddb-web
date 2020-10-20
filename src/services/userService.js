@@ -1,5 +1,5 @@
 import http from "./httpService";
-import config from "../config/config.json";
+import config from "../config/config";
 
 const apiEndpoint = config.apiUrl + "/users";
 

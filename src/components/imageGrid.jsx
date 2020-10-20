@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import config from "../config/config.json";
+import config from "../config/config";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";

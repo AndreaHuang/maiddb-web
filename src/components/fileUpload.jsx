@@ -7,7 +7,7 @@ import FilePondPluginImageTransform from "filepond-plugin-image-transform";
 import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
-import config from "../config/config.json";
+import config from "../config/config";
 import constants from "../config/constants";
 import tokenService from "../services/tokenService";
 
@@ -20,7 +20,7 @@ registerPlugin(
 
 const getServerConfig = () => {
   let result = {};
-  result.url = config.fileUrl;
+  result.url = config.apiUrl+config.filePath;
   const token = tokenService.getToken();
   let headers = {};
   if (token) {
