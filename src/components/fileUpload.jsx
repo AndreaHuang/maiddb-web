@@ -42,8 +42,9 @@ const FileUpload = ({ files, setFiles }) => {
       //   stylePanelAspectRatio={1.5}
       imageResizeMode="contain"
       imageResizeUpscale={false}
-      imageResizeTargetHeight={200}
-      imagePreviewHeight={100}
+      imageResizeTargetWidth={506}
+      imageResizeTargetHeight={900}
+      imagePreviewHeight={200}
     />
   );
 };

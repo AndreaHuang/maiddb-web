@@ -2,9 +2,9 @@ import React from "react";
 const RadioInput = ({ name, label, value, error, options, onChange }) => {
   return (
     <fieldset className="form-group">
-      <div className="row">
-        <legend className="col-form-label col-sm-2 pt-0">{label}</legend>
-        <div className="col-sm-10">
+      
+        <label className="form-label">{label}</label>
+        <div className="form-options-list">
           {options.map((option) => (
             <div className="form-check" key={option.value}>
               <input
@@ -21,11 +21,10 @@ const RadioInput = ({ name, label, value, error, options, onChange }) => {
             </div>
           ))}
         </div>
-      </div>
 
       {error && (
-        <div className="alert alert-danger mt-2" role="alert">
-          <small> {error}</small>
+        <div className="form-control form-error-message" role="alert">
+         {error}
         </div>
       )}
     </fieldset>

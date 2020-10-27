@@ -47,19 +47,20 @@ class TextContent extends Component {
 
     if (isDetailsMode) {
       return (
-        <p className={this.props.className}>
-          {fullText} ...
-          <span onClick={this.toggle}>
-            <small>{viewLessText}</small>
+       
+          <p>{fullText} 
+          <span onClick={this.toggle} className="card-text-view-more">
+            ...<small>{viewLessText}</small>
           </span>
-        </p>
+          </p>
+       
       );
     } else {
       return (
         <p>
-          {truncatedText} ...
-          <span onClick={this.toggle}>
-            <small>{viewMoreText}</small>
+          {truncatedText}
+          <span onClick={this.toggle} className="card-text-view-more">
+            ...<small>{viewMoreText}</small>
           </span>
         </p>
       );

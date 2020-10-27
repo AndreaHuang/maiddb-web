@@ -8,13 +8,13 @@ import TextContent from "./textContent";
 import ImageGrid from "./imageGrid";
 import CountryFlag from "./countryFlag";
 
-const CaseCard = ({ data }) => {
+const CaseCard = ({ data,imageModalId ,toggleImageModal}) => {
   return (
-    <div className="card bg-white mx-10 h-100 shadow-sm rounded">
-      <header className="d-flex m-2 justity-content-left">
-        <span className="badge badge-danger" style={{ padding: "0.4em" }}>
+    <div className="card">
+      <header className="card-header">
+        <div className="maid-name">
           {data.maid.name}
-        </span>
+        </div>
 
         <CountryFlag nationality={data.maid.nationality} />
         <Age
@@ -23,19 +23,22 @@ const CaseCard = ({ data }) => {
         ></Age>
       </header>
       <div className="card-body">
-        <div className="d-flex flex-row justify-content-start mb-2">
+        <div className="card-tags">
           {data.categories.map((catogory, idx) => (
-            <span className="badge badge-warning" key={idx}>
+            <div className="case-tag" key={idx}>
               {catogory}
-            </span>
+            </div>
           ))}
         </div>
-        <TextContent content={data.details} className="card-text" />
-        <ImageGrid images={data.files} />
+        <div className="card-text">
+        <TextContent content={data.details} />
+        </div>
+        <ImageGrid images={data.files} imageModalId={imageModalId} toggleImageModal={toggleImageModal}/>
       </div>
-      <footer className="d-flex justify-content-end">
-        {data.reference && (
-          <div className="d-flex justify-content-start">
+      <footer className="card-footer">
+        <div className="card-footer-line">
+        {data.reference && 
+          <div className="externalReference">
             <small>
               <ExternalSource
                 name={data.reference.source}
@@ -43,15 +46,15 @@ const CaseCard = ({ data }) => {
               />
             </small>
           </div>
-        )}
-        <div className="d-flex justify-content-start">
+        }
+        <div className="share">
           <Share
             onClick={() => {
               console.log("To Share this post");
             }}
           />
         </div>
-        <div className="d-flex justify-content-start">
+        <div className="angry">
           <Hate
             hated={true}
             count={100}
@@ -60,12 +63,10 @@ const CaseCard = ({ data }) => {
             }}
           />
         </div>
-        <div className="d-flex justify-content-end">
-          {" "}
-          <small className="text-muted">
-            {data.author.name ? data.author.name : null}
-            {data.postDate ? data.postDate : null}
-          </small>
+   
+        </div>
+        <div className="card-footer-line">
+            {data.postDateDisplay ? data.postDateDisplay : null}
         </div>
       </footer>
     </div>

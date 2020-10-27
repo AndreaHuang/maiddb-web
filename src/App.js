@@ -3,7 +3,7 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
-import "./App.css";
+// import "./App.css";
 import Cases from "./pages/cases";
 import NewCaseForm from "./pages/newCaseForm";
 import NavBar from "./pages/navBar";
@@ -22,10 +22,18 @@ function App() {
     setCurrentUser(tokenService.getUser());
   }, []);
   return (
-    <div className="App">
-      <ToastContainer />
-      <NavBar user={currentUser} />
-      <div className="container-fluid">
+    <>
+      <header>
+        <div className="navbar-container">
+            <NavBar user={currentUser} />
+      </div>
+      <div className="notification-container">
+          <ToastContainer />
+      </div>
+      </header>
+      <main>
+        <div className="main-container">
+        <div className="content-container">
         <Switch>
           <Route path="/cases" render={(props) => <Cases {...props} />} />
           <ProtectedRoute path="/newCase" component={NewCaseForm} />
@@ -37,8 +45,14 @@ function App() {
           <Redirect from="/" to="/cases" exact />
           <Redirect to="/notfound" />
         </Switch>
-      </div>
-    </div>
+        </div>
+        <div className="sidebar-container">
+
+        </div>
+        </div>
+      </main>
+
+    </>
   );
 }
 

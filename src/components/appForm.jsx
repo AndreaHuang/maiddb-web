@@ -123,7 +123,7 @@ class AppForm extends Component {
       <button
         type="submit"
         disabled={Object.keys(errors).length > 0}
-        className="btn btn-primary"
+        className="btn form-button"
       >
         {label}
       </button>

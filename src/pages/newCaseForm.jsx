@@ -132,8 +132,8 @@ class NewCaseForm extends AppForm {
   };
   render() {
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="main-form">
+          <h2 className="page-title">Report a Case</h2>
           <FileUpload files={this.state.files} setFiles={this.onFilesUpdate} />
           {this.renderInput("maidName", "Maid Name")}
           {this.renderRadioSelect(
@@ -148,7 +148,6 @@ class NewCaseForm extends AppForm {
           {this.renderInput("originalPostDate", "Original Post Date")} */}
           {this.renderButton("Submit")}
         </form>
-      </div>
     );
   }
 }

@@ -1,9 +1,5 @@
 import React from "react";
 
-import { RiKnifeFill } from "react-icons/ri";
-
-import { IconContext } from "react-icons";
-
 const Hate = (props) => {
   const { count, onToggle } = props;
 
@@ -13,12 +9,7 @@ const Hate = (props) => {
       style={{ padding: "0.4em" }}
       onClick={onToggle}
     >
-      <IconContext.Provider
-        value={{ style: { color: "red", verticalAlign: "middle" } }}
-      >
-        <RiKnifeFill />
-      </IconContext.Provider>
-      <i className="far fa-angry" />
+      <i className="far fa-thumbs-down" />
       {count}
     </span>
   );

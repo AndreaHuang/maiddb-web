@@ -39,13 +39,13 @@ class LoginForm extends AppForm {
   };
   render() {
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
+      
+        <form onSubmit={this.handleSubmit} className="main-form">
           {this.renderInput("email", "Email")}
           {this.renderPasswordInput("password", "Password")}
           {this.renderButton("Login")}
         </form>
-      </div>
+
     );
   }
 }

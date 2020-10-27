@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-const SearchBox = ({ name = "search", value, handleSearch }) => {
+const SearchBox = ({ name = "search", value="", handleSearch }) => {
   const [keyword, setKeyword] = useState(value);
   return (
-    <form className="form-inline my-2 my-lg-0">
+    <form className="search-box">
       <input
-        className="form-control mr-sm-2"
+        className="form-control text-input"
         type="search"
         placeholder="Maid Name"
         aria-label="Search by Maid Name"
@@ -12,7 +12,7 @@ const SearchBox = ({ name = "search", value, handleSearch }) => {
         name={name}
         onChange={(e) => setKeyword(e.currentTarget.value)}
       />
-      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
+      <button className="btn form-button search-button" type="submit">
         Search
       </button>
     </form>

@@ -49,14 +49,12 @@ class RegisterForm extends AppForm {
   };
   render() {
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="main-form">
           {this.renderInput("name", "User Name")}
           {this.renderInput("email", "Email")}
           {this.renderPasswordInput("password", "Password")}
           {this.renderButton("Sign Up")}
         </form>
-      </div>
     );
   }
 }

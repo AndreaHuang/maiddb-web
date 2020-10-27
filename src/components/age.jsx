@@ -13,7 +13,7 @@ const Age = (props) => {
 
   if (!birthYear) return null;
   return (
-    <div>
+    <div className="age">
       <small>
         <span>Age: </span>
         <span>{calculateAge(birthYear, birthMonth)}</span>

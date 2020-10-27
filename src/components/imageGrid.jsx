@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import config from "../config/config";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import AppModal from "./appModal";
 
 const IMAGEURL = config.apiUrl;
 const responsive = {
@@ -27,51 +26,43 @@ const responsive = {
 };
 
 const ImageGrid = (props) => {
-  const [selectedImageUrl, setSelectedImageUrl] = useState(null);
-  const { images, size = 100 } = props;
+ 
+  const { images,imageModalId,toggleImageModal} = props;
   const THUMBNAILURL = "url";
   const URL = "url";
 
   if (!images) {
     return null;
   }
+ 
+ 
 
   return (
     <>
       <Carousel
         responsive={responsive}
         infinite={true}
-        autoPlay={true}
+        autoPlay={false}
         autoPlaySpeed={3000}
         keyBoardControl={true}
       >
         {images.map((image, idx) => (
           <div
             key={idx}
-            onClick={() => setSelectedImageUrl(image[URL])}
+            onClick={() =>{toggleImageModal(IMAGEURL+image[URL])}}
             data-toggle="modal"
-            data-target="#imageModal"
+            data-target={"#"+imageModalId}
           >
             <img
               alt="A Case"
-              className="d-block w-45"
+              className="image-thumbnail"
               src={IMAGEURL + image[THUMBNAILURL]}
-              style={{ width: size, height: size * 1.5 }}
             />
           </div>
         ))}
       </Carousel>
-      {selectedImageUrl && (
-        <AppModal id="imageModal">
-          <div data-dismiss="modal">
-            <img
-              alt="A Case"
-              src={IMAGEURL + selectedImageUrl}
-              style={{ width: size * 3, height: size * 6 }}
-            />
-          </div>
-        </AppModal>
-      )}
+
+      
     </>
   );
 };

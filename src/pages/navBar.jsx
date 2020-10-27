@@ -2,11 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 const NavBar = ({ user }) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link className="navbar-brand" to="/">
-        Maid DB
-      </Link>
-      <button
+    <nav className="navbar">
+      <div className="navbar-brand">
+      <img className="nav-logo" alt="logo" src="../images/logo.png"/>
+      <Link className="nav-link" to="/"> Maid DB</Link>
+      </div>
+      {/* <button
         className="navbar-toggler"
         type="button"
         data-toggle="collapse"
@@ -16,10 +17,11 @@ const NavBar = ({ user }) => {
         aria-label="Toggle navigation"
       >
         <span className="navbar-toggler-icon"></span>
-      </button>
-
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
+      </button> */}
+    {/* <div className="collapse navbar-collapse" id="navbarSupportedContent"> */}
+ 
+      <div className="navbar-navigation" id="navbarSupportedContent">
+        <ul className="navbar-nav">
           <li className="nav-item">
             <Link className="nav-link" to="/cases">
               Cases
@@ -47,13 +49,13 @@ const NavBar = ({ user }) => {
               </Link>
             </li>
           )}
-          {user && (
+          {/* {user && (
             <li className="nav-item">
               <Link className="nav-link" to="/profile">
                 Profile
               </Link>
             </li>
-          )}
+          )} */}
           {user && (
             <li className="nav-item">
               <Link className="nav-link" to="/logout">
