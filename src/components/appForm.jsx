@@ -5,8 +5,7 @@ import _ from "lodash";
 import TextInput from "./textInput";
 import TextArea from "./textArea";
 import RadioInput from "./radioInput";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+
 
 const joiValidationOption = {
   abortEarly: false,
@@ -149,20 +148,7 @@ class AppForm extends Component {
       </button>
     );
   };
-  renderDatePicker=(name,label,validation)=>{
-    const { data, errors } = this.state;
-    return (
-     <div className="form-group">
-      <label htmlFor={name} className="form-label">{label}</label>
-      <DatePicker selected={data[name]} onChange={(newValue)=>this.handleChangeDate(newValue,name,validation)} />
-      {errors[name] && (
-        <div className="form-control form-error-message" role="alert">
-         {errors[name]}
-        </div>
-      )}
-      </div>
-    );
-  }
+
 }
 
 export default AppForm;

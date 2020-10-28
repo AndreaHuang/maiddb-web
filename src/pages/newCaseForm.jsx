@@ -7,6 +7,10 @@ import caseService from "../services/caseService";
 import constants from "../config/constants";
 import FileUpload from "../components/fileUpload";
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { subMonths } from "date-fns";
+
 const nationalityOptions = [
   {
     value: "ID",
@@ -22,7 +26,7 @@ class NewCaseForm extends AppForm {
     data: {
       maidName: "",
       maidNationality: "",
-      maidBirthday: new Date("1992-01-01"),
+      maidBirthday: "",
       details: "",
       externalSource: "",
       externalLink: "",
@@ -58,7 +62,45 @@ class NewCaseForm extends AppForm {
         return "Maid must be older than 18."
       }
       return null;
+  };
+
+  renderMaidBirthdayDatePicker=(name,label)=>{
+    const { data, errors } = this.state;
+    return (
+     <div className="form-group">
+      <label htmlFor={name} className="form-label">{label}</label>
+      <DatePicker selected={data[name]}
+      minDate={subMonths(new Date(),12*65)}
+      maxDate={subMonths(new Date(), 12*18)}
+      dateFormat="yyyy"
+      showYearPicker
+      onChange={(newValue)=>this.handleChangeDate(newValue,name)} />
+      {errors[name] && (
+        <div className="form-control form-error-message" role="alert">
+         {errors[name]}
+        </div>
+      )}
+      </div>
+    );
+  };
+  renderOriginalPostDatePicker=(name,label)=>{
+    const { data, errors } = this.state;
+    return (
+     <div className="form-group">
+      <label htmlFor={name} className="form-label">{label}</label>
+      <DatePicker selected={data[name]}
+      maxDate={new Date()}
+      dateFormat="yyyy-MM-dd"
+      onChange={(newValue)=>this.handleChangeDate(newValue,name)} />
+      {errors[name] && (
+        <div className="form-control form-error-message" role="alert">
+         {errors[name]}
+        </div>
+      )}
+      </div>
+    );
   }
+
   buildFileArrayForUpload = (files) => {
     const result = files.map((fileItem) => {
       console.log(fileItem);
@@ -142,12 +184,12 @@ class NewCaseForm extends AppForm {
             "Maid Nationality",
             nationalityOptions
           )}
-          {this.renderDatePicker("maidBirthday","Birthday",this.validateMaidBirthday)}
+          {this.renderMaidBirthdayDatePicker("maidBirthday","Birthday")}
           {this.renderTextArea("details", "Details")}
 
           {this.renderInput("externalSource", "Original Source")}
           {this.renderInput("externalLink", "Original Link")}
-          {this.renderDatePicker("originalPostDate", "Original Post Date")}
+          {this.renderOriginalPostDatePicker("originalPostDate", "Original Post Date")}
           {this.renderButton("Submit")}
         </form>
     );
