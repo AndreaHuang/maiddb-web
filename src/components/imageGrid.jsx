@@ -1,10 +1,8 @@
 import React from "react";
-import config from "../config/config";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-const IMAGEURL = config.apiUrl;
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -28,8 +26,7 @@ const responsive = {
 const ImageGrid = (props) => {
  
   const { images,imageModalId,toggleImageModal} = props;
-  const THUMBNAILURL = "url";
-  const URL = "url";
+ 
 
   if (!images) {
     return null;
@@ -46,17 +43,17 @@ const ImageGrid = (props) => {
         autoPlaySpeed={3000}
         keyBoardControl={true}
       >
-        {images.map((image, idx) => (
+        {images.map((imageUrl, idx) => (
           <div
             key={idx}
-            onClick={() =>{toggleImageModal(IMAGEURL+image[URL])}}
+            onClick={() =>{toggleImageModal(imageUrl)}}
             data-toggle="modal"
             data-target={"#"+imageModalId}
           >
             <img
               alt="A Case"
               className="image-thumbnail"
-              src={IMAGEURL + image[THUMBNAILURL]}
+              src={imageUrl}
             />
           </div>
         ))}

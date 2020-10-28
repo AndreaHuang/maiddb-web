@@ -7,7 +7,7 @@ const TextArea = ({ name, label, value, error, rows = "5", ...rest }) => {
         value={value}
         rows={rows}
         name={name}
-        className="form-control text-input"
+        className="form-control text-input text-area"
         id={name}
         {...rest}
       />

@@ -236,6 +236,9 @@ fieldset{
 .text-input{
     font-size: 1.2rem;
 }
+.text-area{
+    height:auto;
+}
 .form-error-message{
     margin-top:.2rem;
     min-height:1.3rem;
@@ -265,7 +268,8 @@ fieldset{
     padding:.2rem;
 }
 .form-check-label{
-    padding-left:.2rem
+    padding-left:.2rem;
+    font-size:1.1rem;
 }
 
 .search-box{

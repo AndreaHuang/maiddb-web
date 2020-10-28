@@ -39,7 +39,6 @@ const FileUpload = ({ files, setFiles }) => {
       server={getServerConfig()}
       labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
       allowMultiple={true}
-      //   stylePanelAspectRatio={1.5}
       imageResizeMode="contain"
       imageResizeUpscale={false}
       imageResizeTargetWidth={506}
