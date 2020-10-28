@@ -18,8 +18,7 @@ const CaseCard = ({ data,imageModalId ,toggleImageModal}) => {
 
         <CountryFlag nationality={data.maid.nationality} />
         <Age
-          birthYear={data.maid.yearOfBirth}
-          birthMonth={data.maid.monthOfBirth}
+          birthday={data.maid.birthday}
         ></Age>
       </header>
       <div className="card-body">
@@ -37,17 +36,8 @@ const CaseCard = ({ data,imageModalId ,toggleImageModal}) => {
       </div>
       <footer className="card-footer">
         <div className="card-footer-line">
-        {data.reference && 
-          <div className="externalReference">
-            <small>
-              <ExternalSource
-                name={data.reference.source}
-                link={data.reference.link}
-              />
-            </small>
-          </div>
-        }
-        <div className="share">
+       
+        {/* <div className="share">
           <Share
             onClick={() => {
               console.log("To Share this post");
@@ -62,11 +52,20 @@ const CaseCard = ({ data,imageModalId ,toggleImageModal}) => {
               console.log("Hate icon is clicked");
             }}
           />
-        </div>
+        </div> */}
    
         </div>
         <div className="card-footer-line">
-            {data.postDateDisplay ? data.postDateDisplay : null}
+            {data.postDateDisplay ? data.postDateDisplay + (data.author.authorDisplay? " by " + data.author.authorDisplay : "") : null} 
+        
+             {data.reference && 
+              <div className="externalReference">
+                  <ExternalSource
+                    name={data.reference.source}
+                    link={data.reference.link}
+                  />
+              </div>
+        }
         </div>
       </footer>
     </div>

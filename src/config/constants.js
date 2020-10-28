@@ -3,4 +3,5 @@ export default {
   PATH_HOME: "/",
   PATH_LOGIN: "login",
   PATH_CASES: "/cases",
+  PATH_NOTFOUND:"/notfound",
 };

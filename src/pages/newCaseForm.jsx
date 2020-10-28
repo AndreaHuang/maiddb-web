@@ -13,8 +13,8 @@ const nationalityOptions = [
     label: "Indonesia",
   },
   {
-    value: "TH",
-    label: "Thailand",
+    value: "PH",
+    label: "Philippine",
   },
 ];
 class NewCaseForm extends AppForm {
@@ -22,12 +22,11 @@ class NewCaseForm extends AppForm {
     data: {
       maidName: "",
       maidNationality: "",
-      // maidYearOfBirth: "",
-      // maidMonthOfBirth: "",
+      maidBirthday: new Date("1992-01-01"),
       details: "",
-      // externalSource: "",
-      // externalLink: "",
-      // originalPostDate: "",
+      externalSource: "",
+      externalLink: "",
+      originalPostDate: "",
       files: [],
     },
     errors: {},
@@ -36,20 +35,13 @@ class NewCaseForm extends AppForm {
   schema = {
     maidName: Joi.string().required().min(3).max(100).label("Maid Name"),
     maidNationality: Joi.string().required().label("Nationality"),
-    // maidYearOfBirth: Joi.number().integer().optional().label("Birth Year"),
-    // maidMonthOfBirth: Joi.number()
-    //   .integer()
-    //   .optional()
-    //   .min(1)
-    //   .max(12)
-    //   .label("Birth Month"),
-
+    // maidBirthday: Joi.date().label("Birthday"),
     // categories: Joi.array().required().min(1).max(50),
     details: Joi.string().required().min(5).max(5000).label("Details"),
 
-    // externalSource: Joi.string().required().min(3).max(100),
-    // externalLink: Joi.string(),
-    // originalPostDate: Joi.string().isoDate(),
+    // externalSource: Joi.string().optional().label("Original Source"),
+    // externalLink: Joi.string().optional().label("Original Link"),
+    // originalPostDate: Joi.date().optional().label("Original Post Date"),
     files: Joi.array(),
 
     // }),
@@ -61,6 +53,12 @@ class NewCaseForm extends AppForm {
 
     this.setState({ data });
   };
+  validateMaidBirthday =(value)=>{
+      if(value.getFullYear() + 18 > new Date().getFullYear()){
+        return "Maid must be older than 18."
+      }
+      return null;
+  }
   buildFileArrayForUpload = (files) => {
     const result = files.map((fileItem) => {
       console.log(fileItem);
@@ -81,10 +79,13 @@ class NewCaseForm extends AppForm {
     const requestBody = {
       maid: {
         name: data.maidName,
-        nationality: data.maidNationality,
+        nationality: data.maidNationality
       },
       details: data.details,
     };
+    if(data.maidBirthday){
+      requestBody.maid.birthday =data.maidBirthday.toISOString().split("T")[0];
+    }
     const files = this.buildFileArrayForUpload(data.files);
     if (files) {
       requestBody.files = files;
@@ -97,7 +98,7 @@ class NewCaseForm extends AppForm {
       reference.link = data.externalLink;
     }
     if (data.originalPostDate) {
-      reference.postDate = data.originalPostDate;
+      reference.postDate = data.originalPostDate.toISOString().split("T")[0];;
     }
     if (Object.keys(reference).length > 0) {
       requestBody.reference = reference;
@@ -141,11 +142,12 @@ class NewCaseForm extends AppForm {
             "Maid Nationality",
             nationalityOptions
           )}
+          {this.renderDatePicker("maidBirthday","Birthday",this.validateMaidBirthday)}
           {this.renderTextArea("details", "Details")}
 
-          {/* {this.renderInput("externalSource", "External Source")}
-          {this.renderInput("externalLink", "External Link")}
-          {this.renderInput("originalPostDate", "Original Post Date")} */}
+          {this.renderInput("externalSource", "Original Source")}
+          {this.renderInput("externalLink", "Original Link")}
+          {this.renderDatePicker("originalPostDate", "Original Post Date")}
           {this.renderButton("Submit")}
         </form>
     );

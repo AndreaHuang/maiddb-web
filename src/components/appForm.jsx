@@ -5,9 +5,12 @@ import _ from "lodash";
 import TextInput from "./textInput";
 import TextArea from "./textArea";
 import RadioInput from "./radioInput";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const joiValidationOption = {
   abortEarly: false,
+  allowUnknown:true 
 };
 class AppForm extends Component {
   state = {
@@ -67,6 +70,23 @@ class AppForm extends Component {
 
     this.setState({ data, errors });
   };
+  
+  handleChangeDate =(value,name,validation)=>{
+    //populate the data
+    const { data, errors } = this.state;
+    data[name] = value;
+      // Do the validation and show the error message
+    if(validation){
+        const errorMessage = validation(value);
+      if (errorMessage) {
+        errors[name] = errorMessage;
+      } else {
+        delete errors[name];
+      }
+    }
+    this.setState({ data, errors });
+
+  }
   renderInput = (name, label) => {
     const { data, errors } = this.state;
     return (
@@ -129,6 +149,20 @@ class AppForm extends Component {
       </button>
     );
   };
+  renderDatePicker=(name,label,validation)=>{
+    const { data, errors } = this.state;
+    return (
+     <div className="form-group">
+      <label htmlFor={name} className="form-label">{label}</label>
+      <DatePicker selected={data[name]} onChange={(newValue)=>this.handleChangeDate(newValue,name,validation)} />
+      {errors[name] && (
+        <div className="form-control form-error-message" role="alert">
+         {errors[name]}
+        </div>
+      )}
+      </div>
+    );
+  }
 }
 
 export default AppForm;

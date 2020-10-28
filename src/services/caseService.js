@@ -5,6 +5,10 @@ import config from "../config/config";
 
 const apiEndpoint = config.apiUrl + "/cases";
 
+async function getACase(id){
+  return await http.get(apiEndpoint+"/"+id);
+}
+
 
 async function getCases(query, page, cancel){
   const params={};
@@ -28,5 +32,6 @@ async function createNewCase(newCase) {
 export default {
   getCases,
   createNewCase,
+  getACase,
   // deleteCase,
 };

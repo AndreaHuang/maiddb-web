@@ -6,7 +6,7 @@ const CountryFlag = ({ nationality }) => {
       countryCode={nationality}
       style={{
         width: "2rem",
-        }}
+         height: '2rem',}}
       title={nationality}
     />
   );
