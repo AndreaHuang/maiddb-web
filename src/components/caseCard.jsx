@@ -4,11 +4,12 @@ import Hate from "./hate";
 import Share from "./share";
 import ExternalSource from "./externalSource";
 import Age from "./age";
-import TextContent from "./textContent";
 import ImageGrid from "./imageGrid";
 import CountryFlag from "./countryFlag";
+import { ReadMore } from '@bisvarup/react-read-more'
+import parser from 'html-react-parser';
 
-const CaseCard = ({ data,imageModalId ,toggleImageModal}) => {
+const CaseCard = ({ data, imageModalId, toggleImageModal }) => {
   return (
     <div className="card">
       <header className="card-header">
@@ -30,14 +31,23 @@ const CaseCard = ({ data,imageModalId ,toggleImageModal}) => {
           ))}
         </div>
         <div className="card-text">
-        <TextContent content={data.details} />
+          <ReadMore readMoreClass="card-text-view-more"
+            lineHeight={2.5}
+            height={5}
+            readMoreStyles={{
+              "background-color": "var(--light",
+              "font-size": "1rem",
+              "line-height": "2rem"
+            }}>
+            {parser(data.details)}
+          </ReadMore>
         </div>
-        <ImageGrid images={data.files} imageModalId={imageModalId} toggleImageModal={toggleImageModal}/>
+        <ImageGrid images={data.files} imageModalId={imageModalId} toggleImageModal={toggleImageModal} />
       </div>
       <footer className="card-footer">
         <div className="card-footer-line">
-       
-        {/* <div className="share">
+
+          {/* <div className="share">
           <Share
             onClick={() => {
               console.log("To Share this post");
@@ -53,22 +63,22 @@ const CaseCard = ({ data,imageModalId ,toggleImageModal}) => {
             }}
           />
         </div> */}
-   
+
         </div>
         <div className="card-footer-line">
-            {data.postDateDisplay ? data.postDateDisplay + (data.author.authorDisplay? " by " + data.author.authorDisplay : "") : null} 
-        
-             {data.reference && 
-              <div className="externalReference">
-                  <ExternalSource
-                    name={data.reference.source}
-                    link={data.reference.link}
-                  />
-              </div>
-        }
+          {data.postDateDisplay ? data.postDateDisplay + (data.author.authorDisplay ? " by " + data.author.authorDisplay : "") : null}
+
+          {data.reference &&
+            <div className="externalReference">
+              <ExternalSource
+                name={data.reference.source}
+                link={data.reference.link}
+              />
+            </div>
+          }
         </div>
       </footer>
-    </div>
+    </div >
   );
 };
 

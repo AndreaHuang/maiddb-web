@@ -2,6 +2,7 @@
 @import "form.css";
 @import "button.css";
 @import "toastify.css";
+/* @import "../../node_modules/tinymce/tinymce.min.js" */
 /* @import "modal.css"; */
 /* @import "navbar.css"; */
 :root{
@@ -382,9 +383,9 @@ fieldset{
     color:var(--dark)
 }
 .card-text-view-more{
-    color: var(--dark);
+    color: var(--info);
     font-weight: bold;
-
+    padding-top:1rem;
 }
 .card-footer{
     border-top: 0.05rem solid var(--shadow);

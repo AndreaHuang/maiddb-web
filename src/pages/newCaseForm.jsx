@@ -57,46 +57,46 @@ class NewCaseForm extends AppForm {
 
     this.setState({ data });
   };
-  validateMaidBirthday =(value)=>{
-      if(value.getFullYear() + 18 > new Date().getFullYear()){
-        return "Maid must be older than 18."
-      }
-      return null;
+  validateMaidBirthday = (value) => {
+    if (value.getFullYear() + 18 > new Date().getFullYear()) {
+      return "Maid must be older than 18."
+    }
+    return null;
   };
 
-  renderMaidBirthdayDatePicker=(name,label)=>{
+  renderMaidBirthdayDatePicker = (name, label) => {
     const { data, errors } = this.state;
     return (
-     <div className="form-group">
-      <label htmlFor={name} className="form-label">{label}</label>
-      <DatePicker selected={data[name]}
-      minDate={subMonths(new Date(),12*65)}
-      maxDate={subMonths(new Date(), 12*18)}
-      dateFormat="yyyy"
-      showYearPicker
-      onChange={(newValue)=>this.handleChangeDate(newValue,name)} />
-      {errors[name] && (
-        <div className="form-control form-error-message" role="alert">
-         {errors[name]}
-        </div>
-      )}
+      <div className="form-group">
+        <label htmlFor={name} className="form-label">{label}</label>
+        <DatePicker selected={data[name]}
+          minDate={subMonths(new Date(), 12 * 65)}
+          maxDate={subMonths(new Date(), 12 * 18)}
+          dateFormat="yyyy"
+          showYearPicker
+          onChange={(newValue) => this.handleChangeDate(newValue, name)} />
+        {errors[name] && (
+          <div className="form-control form-error-message" role="alert">
+            {errors[name]}
+          </div>
+        )}
       </div>
     );
   };
-  renderOriginalPostDatePicker=(name,label)=>{
+  renderOriginalPostDatePicker = (name, label) => {
     const { data, errors } = this.state;
     return (
-     <div className="form-group">
-      <label htmlFor={name} className="form-label">{label}</label>
-      <DatePicker selected={data[name]}
-      maxDate={new Date()}
-      dateFormat="yyyy-MM-dd"
-      onChange={(newValue)=>this.handleChangeDate(newValue,name)} />
-      {errors[name] && (
-        <div className="form-control form-error-message" role="alert">
-         {errors[name]}
-        </div>
-      )}
+      <div className="form-group">
+        <label htmlFor={name} className="form-label">{label}</label>
+        <DatePicker selected={data[name]}
+          maxDate={new Date()}
+          dateFormat="yyyy-MM-dd"
+          onChange={(newValue) => this.handleChangeDate(newValue, name)} />
+        {errors[name] && (
+          <div className="form-control form-error-message" role="alert">
+            {errors[name]}
+          </div>
+        )}
       </div>
     );
   }
@@ -125,8 +125,8 @@ class NewCaseForm extends AppForm {
       },
       details: data.details,
     };
-    if(data.maidBirthday){
-      requestBody.maid.birthday =data.maidBirthday.toISOString().split("T")[0];
+    if (data.maidBirthday) {
+      requestBody.maid.birthday = data.maidBirthday.toISOString().split("T")[0];
     }
     const files = this.buildFileArrayForUpload(data.files);
     if (files) {
@@ -175,23 +175,23 @@ class NewCaseForm extends AppForm {
   };
   render() {
     return (
-        <form onSubmit={this.handleSubmit} className="main-form">
-          <h2 className="page-title">Report a Case</h2>
-          <FileUpload files={this.state.files} setFiles={this.onFilesUpdate} />
-          {this.renderInput("maidName", "Maid Name")}
-          {this.renderRadioSelect(
-            "maidNationality",
-            "Maid Nationality",
-            nationalityOptions
-          )}
-          {this.renderMaidBirthdayDatePicker("maidBirthday","Birthday")}
-          {this.renderTextArea("details", "Details")}
-
-          {this.renderInput("externalSource", "Original Source")}
-          {this.renderInput("externalLink", "Original Link")}
-          {this.renderOriginalPostDatePicker("originalPostDate", "Original Post Date")}
-          {this.renderButton("Submit")}
-        </form>
+      <form onSubmit={this.handleSubmit} className="main-form">
+        <h2 className="page-title">Report a Case</h2>
+        <FileUpload files={this.state.files} setFiles={this.onFilesUpdate} />
+        {this.renderInput("maidName", "Maid Name")}
+        {this.renderRadioSelect(
+          "maidNationality",
+          "Maid Nationality",
+          nationalityOptions
+        )}
+        {this.renderMaidBirthdayDatePicker("maidBirthday", "Birthday")}
+        {/* {this.renderTextArea("details", "Details")} */}
+        {this.renderEditor("details", "Details")}
+        {this.renderInput("externalSource", "Original Source")}
+        {this.renderInput("externalLink", "Original Link")}
+        {this.renderOriginalPostDatePicker("originalPostDate", "Original Post Date")}
+        {this.renderButton("Submit")}
+      </form>
     );
   }
 }
