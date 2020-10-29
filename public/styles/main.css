@@ -1,6 +1,7 @@
 @import "normalize.css";
 @import "form.css";
 @import "button.css";
+@import "toastify.css";
 /* @import "modal.css"; */
 /* @import "navbar.css"; */
 :root{
@@ -479,3 +480,4 @@ fieldset{
 .react-multi-carousel-list{
     justify-content: center;
 }
+

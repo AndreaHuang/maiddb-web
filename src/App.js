@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Route, Redirect, Switch} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
+// import "react-toastify/dist/ReactToastify.min.css";
 
-// import "./App.css";
 import Cases from "./pages/cases";
 import SingleCase from './pages/singleCase';
 import NewCaseForm from "./pages/newCaseForm";

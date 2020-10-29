@@ -1,6 +1,10 @@
 # this is for GCP App Enginee deployment
 runtime: nodejs12
 
+env_variables:
+  NODE_ENV: "production"
+  REACT_APP_STAGE: "production"
+
 handlers:
   # Serve all static files with url ending with a file extension
   - url: /(.*\..+)$
@@ -10,5 +14,4 @@ handlers:
   - url: /.*
     static_files: build/index.html
     upload: build/index.html
-env_variables:
-  REACT_APP_STAGE: production
+
