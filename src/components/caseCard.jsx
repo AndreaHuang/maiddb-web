@@ -33,9 +33,9 @@ const CaseCard = ({ data, imageModalId, toggleImageModal }) => {
         <div className="card-text">
           <ReadMore readMoreClass="card-text-view-more"
             lineHeight={2.5}
-            height={5}
+            height={10}
             readMoreStyles={{
-              "background-color": "var(--light",
+              "background-color": "var(--light)",
               "font-size": "1rem",
               "line-height": "2rem"
             }}>
