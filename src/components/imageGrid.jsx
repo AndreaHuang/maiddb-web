@@ -24,15 +24,15 @@ const responsive = {
 };
 
 const ImageGrid = (props) => {
- 
-  const { images,imageModalId,toggleImageModal} = props;
- 
+
+  const { images, imageModalId, toggleImageModal } = props;
+
 
   if (!images) {
     return null;
   }
- 
- 
+
+
 
   return (
     <>
@@ -46,9 +46,9 @@ const ImageGrid = (props) => {
         {images.map((imageUrl, idx) => (
           <div
             key={idx}
-            onClick={() =>{toggleImageModal(imageUrl)}}
+            onClick={() => { toggleImageModal(imageUrl) }}
             data-toggle="modal"
-            data-target={"#"+imageModalId}
+            data-target={"#" + imageModalId}
           >
             <img
               alt="A Case"
@@ -59,7 +59,7 @@ const ImageGrid = (props) => {
         ))}
       </Carousel>
 
-      
+
     </>
   );
 };

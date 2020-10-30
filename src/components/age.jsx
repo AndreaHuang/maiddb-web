@@ -5,7 +5,7 @@ const Age = (props) => {
   console.log(birthday);
   const calculateAge = (birthday) => {
     const today = new Date();
-    const splitted=birthday.split("-");
+    const splitted = birthday.split("-");
     let age_now = today.getFullYear() - parseInt(splitted[0]);
     console.log(age_now);
     if (today.getMonth() < parseInt(splitted[1])) {
@@ -17,10 +17,8 @@ const Age = (props) => {
   if (!birthday) return null;
   return (
     <div className="age">
-      <small>
-        <span>Age: </span>
-        <span>{calculateAge(birthday)}</span>
-      </small>
+      <span>Age: </span>
+      <span>{calculateAge(birthday)}</span>
     </div>
   );
 };

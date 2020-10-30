@@ -6,7 +6,7 @@ import ExternalSource from "./externalSource";
 import Age from "./age";
 import ImageGrid from "./imageGrid";
 import CountryFlag from "./countryFlag";
-import { ReadMore } from '@bisvarup/react-read-more'
+// import { ReadMore } from '@bisvarup/react-read-more'
 import parser from 'html-react-parser';
 
 const CaseCard = ({ data, imageModalId, toggleImageModal }) => {
@@ -31,7 +31,8 @@ const CaseCard = ({ data, imageModalId, toggleImageModal }) => {
           ))}
         </div>
         <div className="card-text">
-          <ReadMore readMoreClass="card-text-view-more"
+          {parser(data.details)}
+          {/* <ReadMore readMoreClass="card-text-view-more"
             lineHeight={2.5}
             height={10}
             readMoreStyles={{
@@ -40,7 +41,7 @@ const CaseCard = ({ data, imageModalId, toggleImageModal }) => {
               "line-height": "2rem"
             }}>
             {parser(data.details)}
-          </ReadMore>
+          </ReadMore> */}
         </div>
         <ImageGrid images={data.files} imageModalId={imageModalId} toggleImageModal={toggleImageModal} />
       </div>
