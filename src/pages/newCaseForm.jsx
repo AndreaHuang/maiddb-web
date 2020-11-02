@@ -10,6 +10,7 @@ import FileUpload from "../components/fileUpload";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { subMonths } from "date-fns";
+import { Helmet } from "react-helmet";
 
 const nationalityOptions = [
   {
@@ -175,23 +176,31 @@ class NewCaseForm extends AppForm {
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="main-form">
-        <h2 className="page-title">Report a Case</h2>
-        <FileUpload files={this.state.files} setFiles={this.onFilesUpdate} />
-        {this.renderInput("maidName", "Maid Name")}
-        {this.renderRadioSelect(
-          "maidNationality",
-          "Maid Nationality",
-          nationalityOptions
-        )}
-        {this.renderMaidBirthdayDatePicker("maidBirthday", "Birthday")}
-        {/* {this.renderTextArea("details", "Details")} */}
-        {this.renderEditor("details", "Details")}
-        {this.renderInput("externalSource", "Original Source")}
-        {this.renderInput("externalLink", "Original Link")}
-        {this.renderOriginalPostDatePicker("originalPostDate", "Original Post Date")}
-        {this.renderButton("Submit")}
-      </form>
+      <>
+        <form onSubmit={this.handleSubmit} className="main-form">
+          <h2 className="page-title">Report a Case</h2>
+          <FileUpload files={this.state.files} setFiles={this.onFilesUpdate} />
+          {this.renderInput("maidName", "Maid Name")}
+          {this.renderRadioSelect(
+            "maidNationality",
+            "Maid Nationality",
+            nationalityOptions
+          )}
+          {this.renderMaidBirthdayDatePicker("maidBirthday", "Birthday")}
+          {/* {this.renderTextArea("details", "Details")} */}
+          {this.renderEditor("details", "Details")}
+          {this.renderInput("externalSource", "Original Source")}
+          {this.renderInput("externalLink", "Original Link")}
+          {this.renderOriginalPostDatePicker("originalPostDate", "Original Post Date")}
+          {this.renderButton("Submit")}
+        </form>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Report a Case</title>
+          <meta name="description" content="外傭黑名單。Full blacklist of maid aka domestic helper. " />
+          <meta name="keywords" content="maid,helper,fdh,blacklist,女傭,外傭,姐姐,工人,黑名單,女佣,外佣,姐姐,黑名单"></meta>
+        </Helmet>
+      </>
     );
   }
 }

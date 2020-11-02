@@ -29,9 +29,11 @@
     "react-datepicker": "^3.3.0",
     "react-dom": "^16.13.1",
     "react-filepond": "^7.1.0",
+    "react-helmet": "^6.1.0",
     "react-multi-carousel": "^2.5.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-snap": "^1.23.0",
     "react-toastify": "^6.0.9",
     "sass": "^1.27.0",
     "typescript": "^4.0.3"
@@ -40,7 +42,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postbuild": "react-snap"
   },
   "eslintConfig": {
     "extends": "react-app"

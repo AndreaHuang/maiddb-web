@@ -27,10 +27,10 @@ function App() {
       <header>
         <div className="navbar-container">
             <NavBar user={currentUser} />
-      </div>
-      <div className="notification-container">
+        </div>
+        <div className="notification-container">
           <ToastContainer />
-      </div>
+       </div>
       </header>
       <main>
         <div className="main-container">

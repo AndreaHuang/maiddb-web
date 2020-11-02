@@ -25,7 +25,7 @@ const responsive = {
 
 const ImageGrid = (props) => {
 
-  const { images, imageModalId, toggleImageModal } = props;
+  const { images, imageModalId, toggleImageModal, altText } = props;
 
 
   if (!images) {
@@ -39,7 +39,7 @@ const ImageGrid = (props) => {
       <Carousel
         responsive={responsive}
         infinite={true}
-        autoPlay={false}
+        autoPlay={true}
         autoPlaySpeed={3000}
         keyBoardControl={true}
       >
@@ -51,7 +51,7 @@ const ImageGrid = (props) => {
             data-target={"#" + imageModalId}
           >
             <img
-              alt="A Case"
+              alt={altText + " index " + idx}
               className="image-thumbnail"
               src={imageUrl}
             />

@@ -9,12 +9,15 @@ import CountryFlag from "./countryFlag";
 // import { ReadMore } from '@bisvarup/react-read-more'
 import parser from 'html-react-parser';
 
+const getCaseUrl = (caseId) => {
+  return "/cases/" + caseId;
+}
 const CaseCard = ({ data, imageModalId, toggleImageModal }) => {
   return (
     <div className="card">
       <header className="card-header">
         <div className="maid-name">
-          {data.maid.name}
+          <a href={getCaseUrl(data._id)}> {data.maid.name} </a>
         </div>
 
         <CountryFlag nationality={data.maid.nationality} />
@@ -43,7 +46,7 @@ const CaseCard = ({ data, imageModalId, toggleImageModal }) => {
             {parser(data.details)}
           </ReadMore> */}
         </div>
-        <ImageGrid images={data.files} imageModalId={imageModalId} toggleImageModal={toggleImageModal} />
+        <ImageGrid altText={data.maid.name} images={data.files} imageModalId={imageModalId} toggleImageModal={toggleImageModal} />
       </div>
       <footer className="card-footer">
         <div className="card-footer-line">

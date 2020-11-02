@@ -6,6 +6,7 @@ import AppForm from "../components/appForm";
 import loginService from "../services/loginService";
 import tokenService from "../services/tokenService";
 import Constants from "../config/constants";
+import { Helmet } from "react-helmet";
 
 class LoginForm extends AppForm {
   state = {
@@ -39,12 +40,19 @@ class LoginForm extends AppForm {
   };
   render() {
     return (
-      
+      <>
         <form onSubmit={this.handleSubmit} className="main-form">
           {this.renderInput("email", "Email")}
           {this.renderPasswordInput("password", "Password")}
           {this.renderButton("Login")}
         </form>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Login</title>
+          <meta name="description" content="Login page" />
+          <meta name="robots" content="noindex"></meta>
+        </Helmet>
+      </>
 
     );
   }

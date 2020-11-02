@@ -5,7 +5,7 @@ const ExternalSource = (props) => {
   return (
     <span>
       {" "}
-      Origin: <a href={link}>{name}</a>{" "}
+      Origin: <a href={link} target="_blank" rel="noopener noreferrer">{name}</a>{" "}
     </span>
   );
 };

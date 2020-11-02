@@ -5,8 +5,8 @@ const CountryFlag = ({ nationality }) => {
     <ReactCountryFlag
       countryCode={nationality}
       style={{
-        "font-size": "1rem",
-        "align-self": "center",
+        "fontSize": "1rem",
+        "alignSelf": "center",
         "padding": "0 .5rem"
       }}
       title={nationality}

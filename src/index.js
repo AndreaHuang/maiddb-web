@@ -5,12 +5,23 @@ import App from "./App";
 
 import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render( 
-    <BrowserRouter>
-    <App />
-    </BrowserRouter>,
-    document.getElementById("root")
-);
+const rootElement = document.getElementById("root");
+if (rootElement.hasChildNodes) { //we are in browser
+    ReactDOM.hydrate(
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>,
+        rootElement
+    );
+} else { //we are on server
+    ReactDOM.render(
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>,
+        rootElement
+    );
+}
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
