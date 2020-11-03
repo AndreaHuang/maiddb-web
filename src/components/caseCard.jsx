@@ -6,7 +6,6 @@ import ExternalSource from "./externalSource";
 import Age from "./age";
 import ImageGrid from "./imageGrid";
 import CountryFlag from "./countryFlag";
-// import { ReadMore } from '@bisvarup/react-read-more'
 import parser from 'html-react-parser';
 
 const getCaseUrl = (caseId) => {
@@ -35,16 +34,6 @@ const CaseCard = ({ data, imageModalId, toggleImageModal }) => {
         </div>
         <div className="card-text">
           {parser(data.details)}
-          {/* <ReadMore readMoreClass="card-text-view-more"
-            lineHeight={2.5}
-            height={10}
-            readMoreStyles={{
-              "background-color": "var(--light)",
-              "font-size": "1rem",
-              "line-height": "2rem"
-            }}>
-            {parser(data.details)}
-          </ReadMore> */}
         </div>
         <ImageGrid altText={data.maid.name} images={data.files} imageModalId={imageModalId} toggleImageModal={toggleImageModal} />
       </div>
