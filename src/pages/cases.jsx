@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import queryString from "query-string";
 
 import CaseCard from "../components/caseCard";
@@ -7,8 +7,9 @@ import caseService from "../services/caseService";
 import ImageModal from '../components/imageModal';
 import { Helmet } from "react-helmet";
 import Message from "../components/message";
-
+import structuredDataService from "../services/structuredDataService";
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
+import viewMore from "../scripts/viewmore";
 
 
 
@@ -44,6 +45,14 @@ export default function Cases(props) {
     if (node) lastCaseRef.current.observe(node);
   }, [loading, hasMore]);
 
+  useEffect(() => {
+
+    if (!loading) {
+      console.log("useEffect called");
+      viewMore.init();
+    }
+  }, [loading]);
+
   return (
     <>
       <SearchBox name="search" value={query} />
@@ -62,6 +71,9 @@ export default function Cases(props) {
         <title>Maid Blacklist</title>
         <meta name="description" content="外傭黑名單。Full blacklist of maid aka domestic helper. " />
         <meta name="keywords" content="maid,helper,fdh,blacklist,女傭,外傭,姐姐,工人,黑名單,女佣,外佣,姐姐,黑名单"></meta>
+        <script type="application/ld+json">
+          {structuredDataService.buildStructuredDataForMainPage()}
+        </script>
       </Helmet>
     </>
   );

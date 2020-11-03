@@ -506,3 +506,12 @@ fieldset{
 .errorMessage{
     color:var(--danger);
 }
+
+
+.viewMore,.viewLess{
+    color: var(--info);
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: none
+}
+

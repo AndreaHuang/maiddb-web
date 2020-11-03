@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    // "<div> 
+    //    <p>
+    //      <span class="viewMore"></span>
+    //    </p>
+    //    <p>
+    //       <span class="viewMore"></span>
+    //     </p>
+    //   </div>"
+    function init(){
+     $("div:has(span.viewMore) *").hide();
+     $("p:has(span.viewMore)").show();
+     $("span.viewMore").show();
+     $("span.viewLess").hide();
+     $("span.viewMore").siblings().hide();
+    }
+    function expand(current){
+          
+          $("p, p > span.viewLess",current.parent().parent()).show();
+          current.siblings().show();
+          current.hide();
+      }
+
+    function collapse(current){
+          const div = current.parent().parent();
+          const firstParagraph = $("p:has(span.viewMore)",div);
+          const viewMore =  $("span.viewMore",firstParagraph);
+
+          current.hide(); //hide itself
+          $("*",div).hide(); //hide all p
+          firstParagraph.show();
+          viewMore.show();
+          viewMore.siblings().hide();
+    }
+ 
+   
+    
+    $(document).ready(function(){
+        init();
+        $("span.viewLess").click("click",function(){
+            console.log("viewLess is click");
+            collapse($(this));
+        });
+        $("span.viewMore").click("click",function(){
+            console.log("viewMore is click");
+            expand($(this));
+        });
+    });
+
+</script>
+ <style>
+     .viewMore{
+         color:green
+     }
+     .viewLess{
+         color:green
+     }
+ </style>
+</head>
+<body>
+<section>
+<div class="card-text">
+    <p>工人今早清晨炒我魷魚，佢話自己回菲，並沒有揾新僱主。但堅決要現金不要機票，我估佢想留低揾新僱主？<span class="viewMore">...Read More</span><span>或已經搵到?</span></p><p>我再次呼籲各位僱主，千萬不要請佢，佢做戲一流，亦有情緒病，會突然發癲哭爆好淒涼。如果唔知，以為曾經被撕暴。成日揾我老公講心事，我老公開頭以為佢 homesick, 之後日日send message, 比我同老公捉住鬧先收。</p><p>另外請佢之前，叫我們一定要比佢完約，佢話咩都識做，唔識可以學，點知真係咩都唔識！！烚蛋都唔識，教了佢9個月先做到</p><p>&nbsp;</p><p>湊小朋友完全唔識，亦不願做仲話有2個仔2個女，仔仔3次發燒佢都唔知，仲叫我揾凍水沖涼！</p><p>&nbsp;</p><p>小朋友不能太保護的</p><p>&nbsp;</p><p>唔想洗bb衫洗碗，因為整粗佢對手，每天不斷塗有極香味 lotion.</p><p>從不吃平食物，也不吃隔夜飯送，佢話留比你同小朋友食。</p><p>因為佢係46歲old seafood, 所以唔喜歡你教佢，好有主見，不喜歡可以炒我，日日駁，日日講！</p><p>仲好串講：I m easy to find new employer because my trust face and my fluent words.</p><p>想知多些詳情請pm我啦！免得有人不滿，我只不過想各位僱主小心，有情緒病公主係好恐怖，特別家中有小朋友，係有陰影！我小朋友冇講野4個月。</p><p>Name : Padxxxx. Albina. Texx<span class="viewLess">...View Less</span></p>
+</div>
+
+<div class="card-text">
+    <p>工人今早清晨炒我魷魚，佢話自己回菲，並沒有揾新僱主。但堅決要現金不要機票，我估佢想留低揾新僱主？<span class="viewMore">...Read More</span><span>或已經搵到?</span></p><p>我再次呼籲各位僱主，千萬不要請佢，佢做戲一流，亦有情緒病，會突然發癲哭爆好淒涼。如果唔知，以為曾經被撕暴。成日揾我老公講心事，我老公開頭以為佢 homesick, 之後日日send message, 比我同老公捉住鬧先收。</p><p>另外請佢之前，叫我們一定要比佢完約，佢話咩都識做，唔識可以學，點知真係咩都唔識！！烚蛋都唔識，教了佢9個月先做到</p><p>&nbsp;</p><p>湊小朋友完全唔識，亦不願做仲話有2個仔2個女，仔仔3次發燒佢都唔知，仲叫我揾凍水沖涼！</p><p>&nbsp;</p><p>小朋友不能太保護的</p><p>&nbsp;</p><p>唔想洗bb衫洗碗，因為整粗佢對手，每天不斷塗有極香味 lotion.</p><p>從不吃平食物，也不吃隔夜飯送，佢話留比你同小朋友食。</p><p>因為佢係46歲old seafood, 所以唔喜歡你教佢，好有主見，不喜歡可以炒我，日日駁，日日講！</p><p>仲好串講：I m easy to find new employer because my trust face and my fluent words.</p><p>想知多些詳情請pm我啦！免得有人不滿，我只不過想各位僱主小心，有情緒病公主係好恐怖，特別家中有小朋友，係有陰影！我小朋友冇講野4個月。</p><p>Name : Padxxxx. Albina. Texx<span class="viewLess">...View Less</span></p>
+</div>
+</section>
+
+
+</body>
+
+</html>

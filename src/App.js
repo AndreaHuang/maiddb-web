@@ -17,6 +17,7 @@ import Profile from "./pages/profile";
 import tokenService from "./services/tokenService";
 import ProtectedRoute from "./components/protectedRoute";
 import OpenRoute from "./components/openRoute";
+// import BuildSiteMap from "./pages/buildSiteMap";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -46,7 +47,9 @@ function App() {
           <Route path="/profile" component={Profile} />
           <Route path="/notfound" component={NotFound} />
           <Redirect from="/" to="/cases" exact />
+          {/* <Route path="/build-sitemap" component={BuildSiteMap}/> */}
           <Redirect to="/notfound" />
+          
         </Switch>
         </div>
         <div className="sidebar-container">
