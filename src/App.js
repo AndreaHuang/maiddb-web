@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 import { Route, Redirect, Switch} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.min.css";
@@ -23,7 +24,7 @@ function App() {
     setCurrentUser(tokenService.getUser());
   }, []);
   return (
-    <>
+    <BrowserRouter>
       <header>
         <div className="navbar-container">
             <NavBar user={currentUser} />
@@ -54,7 +55,7 @@ function App() {
         </div>
       </main>
 
-    </>
+    </BrowserRouter>
   );
 }
 

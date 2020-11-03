@@ -1,7 +1,7 @@
 import React from "react";
 
 import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+// import "react-multi-carousel/lib/styles.css";
 
 const responsive = {
   superLargeDesktop: {
@@ -35,32 +35,28 @@ const ImageGrid = (props) => {
 
 
   return (
-    <>
-      <Carousel
-        responsive={responsive}
-        infinite={true}
-        autoPlay={true}
-        autoPlaySpeed={3000}
-        keyBoardControl={true}
-      >
-        {images.map((imageUrl, idx) => (
-          <div
-            key={idx}
-            onClick={() => { toggleImageModal(imageUrl) }}
-            data-toggle="modal"
-            data-target={"#" + imageModalId}
-          >
-            <img
-              alt={altText + " index " + idx}
-              className="image-thumbnail"
-              src={imageUrl}
-            />
-          </div>
-        ))}
-      </Carousel>
-
-
-    </>
+    <Carousel
+      responsive={responsive}
+      infinite={true}
+      autoPlay={true}
+      autoPlaySpeed={3000}
+      keyBoardControl={true}
+    >
+      {images.map((imageUrl, idx) => (
+        <div
+          key={idx}
+          onClick={() => { toggleImageModal(imageUrl) }}
+          data-toggle="modal"
+          data-target={"#" + imageModalId}
+        >
+          <img
+            alt={altText + " index " + idx}
+            className="image-thumbnail"
+            src={imageUrl}
+          />
+        </div>
+      ))}
+    </Carousel>
   );
 };
 

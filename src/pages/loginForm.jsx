@@ -41,16 +41,16 @@ class LoginForm extends AppForm {
   render() {
     return (
       <>
+        <h1>Login</h1>
         <form onSubmit={this.handleSubmit} className="main-form">
           {this.renderInput("email", "Email")}
           {this.renderPasswordInput("password", "Password")}
           {this.renderButton("Login")}
         </form>
         <Helmet>
-          <meta charSet="utf-8" />
           <title>Login</title>
           <meta name="description" content="Login page" />
-          <meta name="robots" content="noindex"></meta>
+          <meta name="robots" content="noindex" />
         </Helmet>
       </>
 

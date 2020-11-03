@@ -59,7 +59,6 @@ export default function Cases(props) {
       { error && <Message message="error" messageType="error"></Message>}
       <ImageModal url={selectedImageUrl} toggleImageModal={toggleImageModal} />
       <Helmet>
-        <meta charSet="utf-8" />
         <title>Maid Blacklist</title>
         <meta name="description" content="外傭黑名單。Full blacklist of maid aka domestic helper. " />
         <meta name="keywords" content="maid,helper,fdh,blacklist,女傭,外傭,姐姐,工人,黑名單,女佣,外佣,姐姐,黑名单"></meta>

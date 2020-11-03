@@ -1,23 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 
 import * as serviceWorker from "./serviceWorker";
 
 const rootElement = document.getElementById("root");
 if (rootElement.hasChildNodes) { //we are in browser
-    ReactDOM.hydrate(
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>,
+    ReactDOM.hydrate(      
+            <App />,
         rootElement
     );
 } else { //we are on server
     ReactDOM.render(
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>,
+         <App />,
         rootElement
     );
 }

@@ -2,6 +2,7 @@
 @import "form.css";
 @import "button.css";
 @import "toastify.css";
+@import "react-multi-carousel/lib/styles.css";
 /* @import "../../node_modules/tinymce/tinymce.min.js" */
 /* @import "modal.css"; */
 /* @import "navbar.css"; */
@@ -279,7 +280,6 @@ fieldset{
 }
 .form-options-list{
     text-align: left;
-    color:
 }
 .form-check{
     padding:.2rem;
@@ -387,9 +387,7 @@ fieldset{
     align-self: center;
     font-size:1rem;
 }
-.case-tag{
 
-}
 
 .card-text{
     text-align: left;
